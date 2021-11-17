@@ -1,9 +1,15 @@
 #include <Arduino.h>
+#include <hw/Potentiometer.h>
+
+#define POTENTIOMETER_PIN A0
+
+Potentiometer* potentiometer = new Potentiometer(POTENTIOMETER_PIN);
 
 void setup() {
-// write your initialization code here
+    Serial.begin(9600);
 }
 
 void loop() {
-// write your code here
+    int value = potentiometer->value();
+    Serial.println(value);
 }

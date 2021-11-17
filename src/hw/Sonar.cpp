@@ -1,12 +1,10 @@
 #include <Arduino.h>
 #include "Sonar.h"
 
-//constructor 
 Sonar::Sonar(char trig_pin, char echo_pin) : HwComponent(trig_pin) {
     this -> echo_pin = echo_pin;
 }
 
-//returns the distance (cm) detected by the sonar
 int Sonar::distance() {
     long duration;
     digitalWrite(this -> pin(), LOW);

@@ -5,10 +5,10 @@
 class HwComponent{
     public:
         //constructor: pin(pin number where component is wired)
-        HwComponent(char pin);
+        explicit HwComponent(char pin);
 
         //returns the pin which this hardware component is wired to
-        char pin();
+        char pin() const;
 
     private:
         char pin_;

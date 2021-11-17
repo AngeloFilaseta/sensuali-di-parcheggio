@@ -5,10 +5,9 @@
 
 #include "HwComponent.h"
 
-//class used to get data from sonar
 class Sonar : public HwComponent {
     public:
-        //constructor
+
         Sonar(char trig_pin, char echo_pin);
 
         //returns the distance (cm) detected by the sonar

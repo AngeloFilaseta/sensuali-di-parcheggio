@@ -3,11 +3,10 @@
 
 #include "HwComponent.h"
 
-#define DELTA_POTENTIOMETER_TIME 128    //the delta to check when potentiometer value is changed
 
 class Potentiometer : public HwComponent {
 public:
-    Potentiometer(char pin);
+    explicit Potentiometer(char pin);
 
     int value();
 };

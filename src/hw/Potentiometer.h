@@ -3,6 +3,7 @@
 
 #include "HwComponent.h"
 
+#define MAX_POTENTIOMETER_VALUE 1024
 
 class Potentiometer : public HwComponent {
 public:

@@ -12,6 +12,5 @@ int Sonar::distance() {
     delayMicroseconds(DELTA_SONAR_ON);
     digitalWrite(this -> pin(), LOW);
     duration = pulseIn(this -> echo_pin, HIGH); //Reads the echoPin, returns the sound wave travel time in microseconds
-    Serial.println(duration);
-    return int(double(duration)*0.034)/2;               //Calculating the distance
+    return duration*0.034/2;               //Calculating the distance
 }

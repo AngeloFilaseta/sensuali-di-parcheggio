@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/platformio,windows,clion+all,linux,c++
-# Edit at https://www.toptal.com/developers/gitignore?templates=platformio,windows,clion+all,linux,c++
+# Created by https://www.toptal.com/developers/gitignore/api/c++,linux,windows,clion+all,platformio,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,linux,windows,clion+all,platformio,visualstudiocode
 
 ### C++ ###
 # Prerequisites
@@ -149,6 +149,21 @@ modules.xml
 .gcc-flags.json
 .pio
 
+### VisualStudioCode ###
+.vscode/
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# Support for Project snippet scope
+!.vscode/*.code-snippets
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -175,4 +190,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/platformio,windows,clion+all,linux,c++
+# End of https://www.toptal.com/developers/gitignore/api/c++,linux,windows,clion+all,platformio,visualstudiocode

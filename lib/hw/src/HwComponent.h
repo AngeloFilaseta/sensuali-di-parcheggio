@@ -1,17 +1,29 @@
 #ifndef SENSUALI_DI_PARCHEGGIO_HWCOMPONENT_H
 #define SENSUALI_DI_PARCHEGGIO_HWCOMPONENT_H
 
-//parent class of every hardware component
+/**
+ * @brief parent class of every hardware component
+ */
 class HwComponent{
-    public:
-        //constructor: pin(pin number where component is wired)
-        explicit HwComponent(char pin);
+public:
 
-        //returns the pin which this hardware component is wired to
-        char pin() const;
+    /**
+     * @brief Construct a new Hw Component object
+     * 
+     * @param pin pin number where component is wired
+     */
+    explicit HwComponent(char pin);
 
-    private:
-        char pin_;
+    /**
+     * @brief Return the pin which this hardware component is wired to.
+     * 
+     * @return char the pin.
+     */
+    char pin() const;
+
+private:
+
+    char pin_;
 };
 
 #endif //SENSUALI_DI_PARCHEGGIO_HWCOMPONENT_H

@@ -2,19 +2,24 @@
 #include "AccurateSonar.h"
 
 AccurateSonar::AccurateSonar(char trigPin, char echoPin) : HwComponent(trigPin) {
-    this -> echoPin = echoPin;
+    _echoPin = echoPin;
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
 }
 
 int AccurateSonar::distance() {
-    long unsigned distance[REP];
-    int sum = 0;
-    for(int i = 0; i < REP; i++){
-        distance[i] = ((SOUND_SPEED/100) * singleRead()) /20000;
-        sum += distance[i];
+    int distance[REP];
+    long sum = 0;
+    char elements = REP;
+    for(int i = 0; i < REP; i++) {
+        distance[i] = (SOUND_SPEED * (int) singleRead()) / 20000;
+        if(distance[i] >= 0) {
+            sum += distance[i];
+        } else {
+            elements--;
+        }
     }
-    return (sum/REP)/100;
+    return sum / elements;
 }
 
 unsigned long AccurateSonar::singleRead() {
@@ -22,5 +27,5 @@ unsigned long AccurateSonar::singleRead() {
     delayMicroseconds(3);
     digitalWrite(pin(), HIGH);
     delayMicroseconds(12);
-    return(pulseIn(this -> echoPin, HIGH, 35000)); // microseconds of (total) sound travel
+    return(pulseIn(_echoPin, HIGH, 35000)); // microseconds of (total) sound travel
 }

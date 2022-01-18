@@ -1,29 +1,51 @@
 #include "Arduino.h"
 #include "SoftwareSerial.h"
 #include "DFRobotDFPlayerMini.h"
+#include "AccurateSonar.h"
+#include "OrgasmState.h"
+#include "util.h"
 
-SoftwareSerial mySoftwareSerial(10, 11);
-DFRobotDFPlayerMini myDFPlayer;
+#define NUMBER_OF_EXCITED_SOUND 11
+#define NUMBER_OF_ALMOST_SOUND 8
+#define NUMBER_OF_CUMMING_SOUND 7
 
-void setup() {
-  mySoftwareSerial.begin(9600);
-  Serial.begin(9600);
-  
-  Serial.println();
-  Serial.println(F("Sensuali di Parcheggio"));
-  Serial.println(F("Booting up... (May take 3~5 seconds)"));
-  
-  if (!myDFPlayer.begin(mySoftwareSerial)) {
-    Serial.println(F("Error during initialization."));
+#define BAUD_SPEED 9600
+
+#define DELAY 1500
+
+SoftwareSerial mp3Serial(11, 10);
+DFRobotDFPlayerMini mp3;
+AccurateSonar sonar = AccurateSonar(2,3);
+
+void initialize_df_player() {
+  mp3Serial.begin(BAUD_SPEED);
+  Serial.println("Booting up... (May take 3~5 seconds)");
+  if (!mp3.begin(mp3Serial)) {
+    Serial.println("Error during initialization.");
     while(true);
   }
-  Serial.println(F("Sensuali di Parcheggio is now online."));
-  
-  myDFPlayer.volume(15);
-  myDFPlayer.play(1);
+  Serial.println("Sensuali di Parcheggio is now online.");
+}
+
+void setup() {
+  Serial.begin(BAUD_SPEED);
+  Serial.println("Sensuali di Parcheggio");
+  initialize_df_player();
 }
 
 void loop() {
-
+  int d = sonar.distance();
+  if(d > 0) {
+    OrgasmState s = map_from_distance(d);
+    int file_name = random_orgasm(
+      s,
+      NUMBER_OF_EXCITED_SOUND,
+      NUMBER_OF_ALMOST_SOUND,
+      NUMBER_OF_CUMMING_SOUND
+    );
+    mp3.volume(orgasm_as_volume(s));
+    mp3.play(file_name);
+  }
+  delay(DELAY);
 }
 
